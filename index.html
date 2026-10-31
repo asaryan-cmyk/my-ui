@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ARYAN CHEAT - Cyber Panel</title>
+<title>ARYAN CHEATS</title>
 
 <style>
 * {
@@ -13,30 +13,25 @@
 }
 
 :root {
-    --bg: #090d16;
-    --card: #111a2e;
+    --bg: #050b14;
+    --card: #0d1b2a;
     --text: #00ffcc;
-    --text-main: #ffffff;
-    --muted: #788ca6;
-    --border: rgba(0, 255, 204, 0.2);
-    --primary: #167b5c;
-    --accent: #00ffcc;
+    --muted: #8ab4f8;
+    --border: rgba(0,255,204,0.2);
 }
 
 body.light {
-    --bg: #edf2fa;
+    --bg: #f0f4f8;
     --card: #ffffff;
-    --text: #172337;
-    --text-main: #172337;
+    --text: #0f172a;
     --muted: #64748b;
-    --border: rgba(0,0,0,0.1);
-    --accent: #167b5c;
+    --border: rgba(0,0,0,0.15);
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     background: var(--bg);
-    color: var(--text-main);
+    color: var(--text);
     min-height: 100vh;
     padding: 25px 15px;
     transition: 0.4s;
@@ -44,130 +39,166 @@ body {
     position: relative;
 }
 
-/* Cyber Hacker Animated Background */
-.matrix-bg {
+/* Hacker Cyber Grid Background */
+body::before {
+    content: "";
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: 
-        linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 204, 0.03) 3px, rgba(0, 255, 204, 0.03) 3px);
-    background-size: 100% 100%, 100% 4px;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(0, 255, 204, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 204, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
     z-index: -2;
     pointer-events: none;
 }
 
-body::before,
+/* Animated Hacker Glow Orbs */
 body::after {
     content: "";
     position: fixed;
-    width: 350px;
-    height: 350px;
+    width: 400px;
+    height: 400px;
     border-radius: 50%;
-    filter: blur(120px);
-    opacity: 0.2;
+    background: rgba(0, 255, 204, 0.15);
+    filter: blur(130px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: hackerPulse 6s infinite alternate;
     z-index: -1;
     pointer-events: none;
 }
 
-body::before {
-    background: #00ffcc;
-    top: -100px;
-    left: -100px;
-    animation: move1 9s infinite alternate;
+@keyframes hackerPulse {
+    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.2; }
+    100% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.4; }
 }
 
-body::after {
-    background: #7928ca;
-    bottom: -100px;
-    right: -100px;
-    animation: move2 8s infinite alternate;
+/* Floating Animated Watermark */
+.watermark {
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: rgba(0, 255, 204, 0.25);
+    animation: watermarkGlow 3s infinite alternate;
+    z-index: 99;
+    pointer-events: none;
+    text-transform: uppercase;
 }
 
-@keyframes move1 {
-    to { transform: translate(150px,100px); }
+@keyframes watermarkGlow {
+    0% { opacity: 0.2; text-shadow: 0 0 5px rgba(0,255,204,0); }
+    100% { opacity: 0.7; text-shadow: 0 0 15px rgba(0,255,204,0.8); }
 }
 
-@keyframes move2 {
-    to { transform: translate(-120px,-100px); }
-}
-
-/* Profile Header Section (Centered) */
+/* Centered Profile Header */
 .profile-header {
     max-width: 850px;
-    margin: 0 auto 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    margin: 0 auto 30px;
     text-align: center;
-    position: relative;
-}
-
-.theme-btn-top {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    border: 1px solid var(--border);
     background: var(--card);
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s;
-    box-shadow: 0 0 10px rgba(0, 255, 204, 0.1);
-}
-
-.theme-btn-top:hover {
-    transform: scale(1.1);
-    border-color: var(--accent);
-}
-
-.avatar-wrapper {
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 255, 204, 0.1);
     position: relative;
-    margin-bottom: 12px;
 }
 
-.avatar {
-    width: 95px;
-    height: 95px;
+.profile-img-box {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 15px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #00ffcc, #7928ca);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 42px;
-    font-weight: bold;
-    color: #fff;
-    border: 3px solid var(--accent);
-    box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
-    animation: pulseGlow 3s infinite alternate;
+    border: 2px solid #00ffcc;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+    animation: imgFloat 4s ease-in-out infinite;
 }
 
-@keyframes pulseGlow {
-    from { box-shadow: 0 0 15px rgba(0, 255, 204, 0.3); }
-    to { box-shadow: 0 0 28px rgba(0, 255, 204, 0.7); }
+.profile-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.logo-title {
-    font-size: 28px;
-    font-weight: 900;
+@keyframes imgFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 800;
     letter-spacing: 2px;
-    color: var(--text-main);
-    text-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
-    margin-bottom: 4px;
+    color: #00ffcc;
+    margin-bottom: 5px;
+    text-shadow: 0 0 10px rgba(0,255,204,0.5);
 }
 
-.tagline {
+.sub-title {
     color: var(--muted);
     font-size: 13px;
     letter-spacing: 1px;
+}
+
+/* Sliding Theme Toggle Switch */
+.theme-switch-wrapper {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 54px;
+    height: 28px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider-toggle {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: #1e293b;
+    border: 1px solid var(--border);
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider-toggle:before {
+    position: absolute;
+    content: "🌙";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+}
+
+input:checked + .slider-toggle {
+    background-color: #00ffcc;
+}
+
+input:checked + .slider-toggle:before {
+    transform: translateX(26px);
+    content: "☀️";
 }
 
 /* Main Container */
@@ -185,11 +216,11 @@ body::after {
 }
 
 .tab-btn {
-    padding: 14px 5px;
+    padding: 15px 5px;
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 13px;
     background: var(--card);
-    color: var(--text-main);
+    color: var(--text);
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
@@ -197,16 +228,15 @@ body::after {
 }
 
 .tab-btn.active {
-    background: var(--primary);
-    color: white;
-    border-color: #20c997;
-    box-shadow: 0 0 15px rgba(32, 201, 151, 0.4);
+    background: #00ffcc;
+    color: #050b14;
+    border-color: #00ffcc;
+    box-shadow: 0 0 15px rgba(0,255,204,0.4);
     transform: translateY(-3px);
 }
 
 .tab-btn:hover {
     transform: translateY(-3px);
-    border-color: var(--accent);
 }
 
 /* Subject Pages */
@@ -216,7 +246,7 @@ body::after {
     border: 1px solid var(--border);
     border-radius: 18px;
     padding: 22px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
 .subject.active {
@@ -244,7 +274,6 @@ body::after {
 
 .subject-header h2 {
     font-size: 20px;
-    color: var(--accent);
 }
 
 .subject-count {
@@ -272,11 +301,11 @@ body::after {
 }
 
 .chapter.done .chapter-name {
-    color: #20c997;
-    text-shadow: 0 0 8px rgba(32, 201, 151, 0.3);
+    color: #00ffcc;
+    text-shadow: 0 0 8px rgba(0,255,204,0.4);
 }
 
-/* Toggle Switch */
+/* Checkbox Switch */
 .switch {
     position: relative;
     width: 58px;
@@ -291,7 +320,7 @@ body::after {
 .slider {
     position: absolute;
     inset: 0;
-    background: #e74c3c;
+    background: #ef4444;
     border-radius: 30px;
     cursor: pointer;
     transition: 0.3s;
@@ -314,74 +343,44 @@ body::after {
 }
 
 .switch input:checked + .slider {
-    background: #16b981;
+    background: #00ffcc;
 }
 
 .switch input:checked + .slider::before {
     content: "✓";
-    color: #16a34a;
+    color: #050b14;
     transform: translateX(28px);
     font-weight: bold;
-}
-
-/* Watermark Animation */
-.watermark {
-    position: fixed;
-    bottom: 15px;
-    right: 20px;
-    font-size: 14px;
-    font-weight: 900;
-    letter-spacing: 2px;
-    color: rgba(0, 255, 204, 0.35);
-    pointer-events: none;
-    z-index: 100;
-    text-transform: uppercase;
-    animation: watermarkFloat 4s ease-in-out infinite alternate;
-}
-
-@keyframes watermarkFloat {
-    0% {
-        transform: translateY(0) scale(1);
-        opacity: 0.3;
-        text-shadow: 0 0 5px rgba(0, 255, 204, 0.2);
-    }
-    100% {
-        transform: translateY(-6px) scale(1.05);
-        opacity: 0.7;
-        text-shadow: 0 0 12px rgba(0, 255, 204, 0.8);
-    }
 }
 
 /* Footer */
 footer {
     text-align: center;
     color: var(--muted);
-    padding: 30px 0 10px;
+    padding: 30px 0;
     font-size: 13px;
 }
 
-/* Mobile responsive */
+/* Mobile Responsive */
 @media(max-width: 500px) {
-    .logo-title {
-        font-size: 22px;
+    .logo {
+        font-size: 20px;
     }
-    .avatar {
-        width: 80px;
-        height: 80px;
-        font-size: 35px;
+    .profile-header {
+        padding: 20px 10px;
     }
     .subject {
         padding: 16px;
     }
     .subject-header h2 {
-        font-size: 18px;
+        font-size: 17px;
     }
     .tab-btn {
         font-size: 11px;
         padding: 12px 2px;
     }
     .chapter-name {
-        font-size: 14px;
+        font-size: 13px;
     }
 }
 </style>
@@ -389,22 +388,27 @@ footer {
 
 <body>
 
-<div class="matrix-bg"></div>
-
-<!-- Watermark -->
+<!-- Floating Watermark -->
 <div class="watermark">AS ARYAN</div>
 
-<!-- CENTERED PROFILE HEADER -->
+<!-- Centered Profile Header with Logo -->
 <header class="profile-header">
-    <button class="theme-btn-top" id="themeBtn" onclick="changeTheme()">🌙</button>
-
-    <div class="avatar-wrapper">
-        <div class="avatar">⚡</div>
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" onclick="changeTheme()" />
+            <div class="slider-toggle"></div>
+        </label>
     </div>
-    
-    <h1 class="logo-title">ARYAN CHEATS</h1>
-    <p class="tagline">Play freely • Play more 🎯</p>
+
+    <div class="profile-img-box">
+        <!-- User Provided Skull Logo Image -->
+        <img src="IMG_e6497cef-fefd-43ac-b220-004a72be81eb.jpg-removebg-preview" alt="Aryan Logo">
+    </div>
+
+    <div class="logo">⚡ ARYAN CHEATS ⚡</div>
+    <p class="sub-title">Play freely. Play more.</p>
 </header>
+
 
 <main class="container">
     <!-- SUBJECT BUTTONS -->
@@ -414,58 +418,60 @@ footer {
     <div id="subjects"></div>
 </main>
 
+
 <footer>
     ARYAN CHEATS © 2026 | Keep Playing 🚀
 </footer>
 
+
 <script>
 // SUBJECT DATA
 const subjects = [
-    {
-        name: "AIMBOT",
-        icon: "☠️",
-        chapters: [
-            "Autoaim",
-            "Aim lock",
-            "Aim head",
-            "No Recoil",
-            "Body headshot"
-        ]
-    },
-    {
-        name: "SNIPER",
-        icon: "◎",
-        chapters: [
-            "sniper scope",
-            "sniper aim",
-            "sniper switch",
-            "sniper aimbot",
-            "sniper glitch"
-        ]
-    },
-    {
-        name: "LOCATION",
-        icon: "📍",
-        chapters: [
-            "Chams menu",
-            "Esp infomation",
-            "Esp skeleton",
-            "Esp box",
-            "Esp line"
-        ]
-    },
-    {
-        name: "BYPASS",
-        icon: "🖥️",
-        chapters: [],
-        other: true
-    }
+{
+    name: "AIMBOT",
+    icon: "☠️",
+    chapters: [
+        "Autoaim",
+        "Aim lock",
+        "Aim head",
+        "No Recoil",
+        "Body headshot",
+    ]
+},
+{
+    name: "SNIPER",
+    icon: "◎",
+    chapters: [
+        "sniper scope",
+        "sniper aim",
+        "sniper switch",
+        "sniper aimbot",
+        "sniper glitch",
+    ]
+},
+{
+    name: "LOCATION",
+    icon: "📍",
+    chapters: [
+        "Chams menu",
+        "Esp infomation",
+        "Esp skeleton",
+        "Esp box",
+        "Esp line",
+    ]
+},
+{
+    name: "BYPASS",
+    icon: "🖥️",
+    chapters: [],
+    other: true
+}
 ];
 
-// LOAD SAVED CHAPTERS
+// LOAD SAVED PROGRESS
 let saved = {};
 try {
-    saved = JSON.parse(localStorage.getItem("cheatProgress") || "{}");
+    saved = JSON.parse(localStorage.getItem("aryanCheatProgress") || "{}");
 } catch(error) {
     saved = {};
 }
@@ -493,17 +499,17 @@ function createSubjects() {
         card.className = "subject";
         card.id = "subject-" + index;
 
-        // OTHER PAGE
+        // OTHER PAGE SECTION
         if(subject.other) {
             const header = document.createElement("div");
             header.className = "subject-header";
-            header.innerHTML = "<h2>🖥️ OTHER / BYPASS</h2>";
+            header.innerHTML = "<h2>🖥️ OTHER TOOLS</h2>";
             card.appendChild(header);
 
             const otherTasks = [
                 "PC BYPASS",
                 "Screen Freeze",
-                "Network (ON/OFF)"
+                "Network (ON/OFF)",
             ];
 
             otherTasks.forEach((task, taskIndex) => {
@@ -523,7 +529,6 @@ function createSubjects() {
                 const input = document.createElement("input");
                 input.type = "checkbox";
                 input.checked = isDone;
-
                 input.onchange = function() {
                     toggleChapter(key, this);
                 };
@@ -533,10 +538,8 @@ function createSubjects() {
 
                 label.appendChild(input);
                 label.appendChild(slider);
-
                 row.appendChild(name);
                 row.appendChild(label);
-
                 card.appendChild(row);
             });
 
@@ -549,9 +552,7 @@ function createSubjects() {
         header.className = "subject-header";
         header.innerHTML = `
             <h2>${subject.icon} ${subject.name}</h2>
-            <span class="subject-count" id="count-${index}">
-                0 / ${subject.chapters.length}
-            </span>
+            <span class="subject-count" id="count-${index}">0 / ${subject.chapters.length}</span>
         `;
         card.appendChild(header);
 
@@ -573,7 +574,6 @@ function createSubjects() {
             const input = document.createElement("input");
             input.type = "checkbox";
             input.checked = isDone;
-
             input.onchange = function() {
                 toggleChapter(key, this);
             };
@@ -583,10 +583,8 @@ function createSubjects() {
 
             label.appendChild(input);
             label.appendChild(slider);
-
             row.appendChild(name);
             row.appendChild(label);
-
             card.appendChild(row);
         });
 
@@ -599,8 +597,12 @@ function createSubjects() {
 
 // SWITCH SUBJECT PAGE
 function showSubject(index) {
-    document.querySelectorAll(".subject").forEach(card => card.classList.remove("active"));
-    document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
+    document.querySelectorAll(".subject").forEach(card => {
+        card.classList.remove("active");
+    });
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.classList.remove("active");
+    });
 
     document.getElementById("subject-" + index).classList.add("active");
     document.querySelectorAll(".tab-btn")[index].classList.add("active");
@@ -609,8 +611,7 @@ function showSubject(index) {
 // CHAPTER TOGGLE
 function toggleChapter(key, input) {
     saved[key] = input.checked;
-    localStorage.setItem("cheatProgress", JSON.stringify(saved));
-
+    localStorage.setItem("aryanCheatProgress", JSON.stringify(saved));
     input.closest(".chapter").classList.toggle("done", input.checked);
     updateSubjectCounts();
 }
@@ -623,11 +624,12 @@ function updateSubjectCounts() {
         let completed = 0;
         subject.chapters.forEach((chapter, chapterIndex) => {
             const key = index + "-" + chapterIndex;
-            if(saved[key] === true) completed++;
+            if(saved[key] === true) {
+                completed++;
+            }
         });
 
-        document.getElementById("count-" + index).textContent =
-            completed + " / " + subject.chapters.length;
+        document.getElementById("count-" + index).textContent = completed + " / " + subject.chapters.length;
     });
 }
 
@@ -635,15 +637,13 @@ function updateSubjectCounts() {
 function changeTheme() {
     document.body.classList.toggle("light");
     const isLight = document.body.classList.contains("light");
-
-    document.getElementById("themeBtn").textContent = isLight ? "☀️" : "🌙";
-    localStorage.setItem("cheatTheme", isLight ? "light" : "dark");
+    localStorage.setItem("aryanCheatTheme", isLight ? "light" : "dark");
 }
 
 // RESTORE THEME
-if(localStorage.getItem("cheatTheme") === "light") {
+if(localStorage.getItem("aryanCheatTheme") === "light") {
     document.body.classList.add("light");
-    document.getElementById("themeBtn").textContent = "☀️";
+    document.getElementById("checkbox").checked = true;
 }
 
 // START APP
