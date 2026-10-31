@@ -1,0 +1,20 @@
+{
+  "name": "Aryan Cheats",
+  "short_name": "Cheats",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#050b14",
+  "theme_color": "#050b14",
+  "icons": [
+    {
+      "src": "IMG_e6497cef-fefd-43ac-b220-004a72be81eb.jpg-removebg-preview",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "IMG_e6497cef-fefd-43ac-b220-004a72be81eb.jpg-removebg-preview",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
