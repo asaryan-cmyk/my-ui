@@ -1,202 +1,796 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Card</title>
-    <style>
-        body {
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradientBG 10s ease infinite;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            transition: background 0.3s;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARYAN CHEAT</title>
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* Profile Card Styling */
-        .profile-card {
-            background-color: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 300px;
-            position: relative; /* Top right switch ke liye */
-            transition: all 0.3s;
-        }
+:root {
+    --bg: #101827;
+    --card: #1d2a40;
+    --text: #ffffff;
+    --muted: #aab8ce;
+    --border: rgba(255,255,255,0.12);
+}
 
-        .avatar {
-            font-size: 50px;
-            background-color: #bae6fd;
-            width: 80px;
-            height: 80px;
-            line-height: 80px;
-            border-radius: 50%;
-            margin: 10px auto 15px auto;
-        }
+body.light {
+    --bg: #edf2fa;
+    --card: #ffffff;
+    --text: #172337;
+    --muted: #64748b;
+    --border: rgba(0,0,0,0.1);
+}
 
-        h1 {
-            color: #0369a1;
-            margin-bottom: 5px;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 25px 15px;
+    transition: 0.4s;
+    overflow-x: hidden;
+}
 
-        p {
-            color: #64748b;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
+/* Animated Background */
 
-        .connect-btn {
-            background-color: #0284c7;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            text-decoration: none;
-            display: inline-block;
-            box-sizing: border-box;
-            transition: background-color 0.3s;
-        }
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(110px);
+    opacity: 0.25;
+    z-index: -1;
+    pointer-events: none;
+}
 
-        .connect-btn:hover {
-            background-color: #0369a1;
-        }
+body::before {
+    background: #3867ff;
+    top: -100px;
+    left: -100px;
+    animation: move1 9s infinite alternate;
+}
 
-        /* --- Top Right Toggle Switch CSS --- */
-        .theme-switch-wrapper {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            display: flex;
-            align-items: center;
-        }
+body::after {
+    background: #9d36ff;
+    bottom: -100px;
+    right: -100px;
+    animation: move2 8s infinite alternate;
+}
 
-        .theme-switch {
-            display: inline-block;
-            height: 24px;
-            position: relative;
-            width: 46px;
-        }
+@keyframes move1 {
+    to {
+        transform: translate(150px,100px);
+    }
+}
 
-        .theme-switch input {
-            display: none;
-        }
+@keyframes move2 {
+    to {
+        transform: translate(-120px,-100px);
+    }
+}
 
-        .slider {
-            background-color: #ccc;
-            bottom: 0;
-            cursor: pointer;
-            left: 0;
-            position: absolute;
-            right: 0;
-            top: 0;
-            transition: .4s;
-            border-radius: 34px;
-        }
+/* Header */
 
-        .slider:before {
-            background-color: #fff;
-            bottom: 3px;
-            content: "☀️";
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 18px;
-            left: 3px;
-            position: absolute;
-            transition: .4s;
-            width: 18px;
-            border-radius: 50%;
-        }
+header {
+    max-width: 850px;
+    margin: 0 auto 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        input:checked + .slider {
-            background-color: #0284c7;
-        }
+.logo {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
 
-        input:checked + .slider:before {
-            transform: translateX(22px);
-            content: "🌙";
-        }
+.theme-btn {
+    width: 55px;
+    height: 42px;
+    border-radius: 30px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    font-size: 22px;
+    cursor: pointer;
+}
 
-        /* --- DARK MODE STYLING --- */
-        body.dark-mode {
-            background: #0f172a;
-        }
+/* Main Container */
 
-        body.dark-mode .profile-card {
-            background-color: #1e293b;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-        }
+.container {
+    max-width: 850px;
+    margin: auto;
+}
 
-        body.dark-mode h1 {
-            color: #38bdf8;
-        }
+.welcome {
+    text-align: center;
+    margin-bottom: 30px;
+}
 
-        body.dark-mode p {
-            color: #94a3b8;
-        }
+.welcome h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
 
-        body.dark-mode .avatar {
-            background-color: #0f172a;
-        }
-    </style>
+.welcome p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* Subject Tabs */
+
+.subject-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.tab-btn {
+    padding: 15px 5px;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    background: var(--card);
+    color: var(--text);
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tab-btn.active {
+    background: #167b5c;
+    color: white;
+    border-color: #20c997;
+    transform: translateY(-3px);
+}
+
+.tab-btn:hover {
+    transform: translateY(-3px);
+}
+
+/* Subject Pages */
+
+.subject {
+    display: none;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 22px;
+}
+
+.subject.active {
+    display: block;
+    animation: pageOpen 0.4s ease;
+}
+
+@keyframes pageOpen {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.subject-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.subject-header h2 {
+    font-size: 22px;
+}
+
+.subject-count {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* Chapters */
+
+.chapter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.chapter:last-child {
+    border-bottom: none;
+}
+
+.chapter-name {
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.chapter.done .chapter-name {
+    color: #20c997;
+}
+
+/* Toggle Switch */
+
+.switch {
+    position: relative;
+    width: 58px;
+    height: 30px;
+    flex-shrink: 0;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    inset: 0;
+    background: #e74c3c;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.slider::before {
+    content: "❌";
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    left: 3px;
+    top: 3px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    transition: 0.3s;
+}
+
+.switch input:checked + .slider {
+    background: #16b981;
+}
+
+.switch input:checked + .slider::before {
+    content: "✓";
+    color: #16a34a;
+    transform: translateX(28px);
+    font-weight: bold;
+}
+
+/* OTHER SECTION */
+
+.other-item {
+    padding: 20px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 14px;
+    transition: 0.3s;
+}
+
+.other-item:hover {
+    transform: translateY(-3px);
+}
+
+.other-item h3 {
+    font-size: 17px;
+    margin-bottom: 7px;
+}
+
+.other-item p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.coming-soon {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 11px;
+    color: #20c997;
+    background: rgba(32,201,151,0.12);
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+/* Footer */
+
+footer {
+    text-align: center;
+    color: var(--muted);
+    padding: 30px 0;
+    font-size: 13px;
+}
+
+/* Mobile */
+
+@media(max-width: 500px) {
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .welcome h1 {
+        font-size: 26px;
+    }
+
+    .subject {
+        padding: 16px;
+    }
+
+    .subject-header h2 {
+        font-size: 19px;
+    }
+
+    .tab-btn {
+        font-size: 12px;
+        padding: 13px 2px;
+    }
+
+    .chapter-name {
+        font-size: 14px;
+    }
+}
+
+</style>
 </head>
+
 <body>
 
-    <div class="profile-card">
-        <!-- Top Right Switch -->
-        <div class="theme-switch-wrapper">
-            <label class="theme-switch" for="checkbox">
-                <input type="checkbox" id="checkbox" />
-                <div class="slider"></div>
-            </label>
-        </div>
+<header>
 
-        <div class="avatar">👨‍💻</div>
-        <h1>Aryan</h1>
-        <p>Panel and bypass in Training 🚀</p>
+    <div class="logo">⚡  ARYAN CHEATS</div>
+
+    <button class="theme-btn"
+    id="themeBtn"
+    onclick="changeTheme()">🌙</button>
+
+</header>
+
+
+<main class="container">
+
+    <section class="welcome">
+
+        <h1>Welcome to Cheats🎯</h1>
+
+        <p>Play freely Play more .</p>
+
+    </section>
+
+
+    <!-- SUBJECT BUTTONS -->
+
+    <nav class="subject-tabs" id="subjectTabs"></nav>
+
+
+    <!-- SUBJECT PAGES -->
+
+    <div id="subjects"></div>
+
+
+</main>
+
+
+<footer>
+
+    ARYAN CHEATS © 2026 | Keep Playing 🚀
+
+</footer>
+
+
+<script>
+
+// SUBJECT DATA
+
+const subjects = [
+
+{
+    name: "AIMBOT",
+    icon: "☠️",
+    chapters: [
+        "Autoaim",
+        "Aim lock",
+        "Aim head",
+        "No Recoil",
+        "Body headshot",
+
+    ]
+},
+
+{
+    name: "SNIPER",
+    icon: "◎",
+    chapters: [
+        "sniper scope",
+        "sniper aim",
+        "sniper switch",
+        "sniper aimbot",
+        "sniper glitch",
+
+    ]
+},
+
+{
+    name: "LOCATION",
+    icon: "📍",
+    chapters: [
+        "Chams menu",
+        "Esp infomation",
+        "Esp skeleton",
+        "Esp box",
+        "Esp line",
+
+    ]
+},
+
+{
+    name: "BYPASS",
+    icon: "🖥️",
+    chapters: [],
+    other: true
+}
+
+];
+
+
+// LOAD SAVED CHAPTERS
+
+let saved = {};
+
+try {
+
+    saved = JSON.parse(
+        localStorage.getItem("neetProgress") || "{}"
+    );
+
+} catch(error) {
+
+    saved = {};
+
+}
+
+
+// CREATE SUBJECT PAGES
+
+function createSubjects() {
+
+    const container =
+        document.getElementById("subjects");
+
+    const tabs =
+        document.getElementById("subjectTabs");
+
+    container.innerHTML = "";
+    tabs.innerHTML = "";
+
+
+    subjects.forEach((subject, index) => {
+
+
+        // CREATE BUTTON
+
+        const btn = document.createElement("button");
+
+        btn.className = "tab-btn";
+
+        btn.textContent =
+            subject.icon + " " + subject.name;
+
+        btn.onclick = function() {
+            showSubject(index);
+        };
+
+        tabs.appendChild(btn);
+
+
+        // CREATE PAGE
+
+        const card = document.createElement("section");
+
+        card.className = "subject";
+
+        card.id = "subject-" + index;
+
+
+        // OTHER PAGE
+
+        {// OTHER PAGE
+
+if(subject.other) {
+
+    const header = document.createElement("div");
+    header.className = "subject-header";
+
+    header.innerHTML = "<h2>📚 OTHER</h2>";
+
+    card.appendChild(header);
+
+    const otherTasks = [
+        "PC BYPASS",
+        "Screen Freeze",
+        "Network (ON/OFF)",
         
-        <!-- Telegram Link Button -->
-        <a href="https://t.me/tbhelp1bot" target="_blank" id="connect-btn" class="connect-btn">Connect Karo</a>
-    </div>
+    ];
 
-    <script>
-        // 1. Dark Mode Toggle Switch Logic
-        const toggleSwitch = document.querySelector('#checkbox');
-        const body = document.body;
+    otherTasks.forEach((task, taskIndex) => {
 
-        toggleSwitch.addEventListener('change', function(e) {
-            if (e.target.checked) {
-                body.classList.add('dark-mode');
-            } else {
-                body.classList.remove('dark-mode');
+        const key = "other-" + taskIndex;
+        const isDone = saved[key] === true;
+
+        const row = document.createElement("div");
+
+        row.className =
+            "chapter" + (isDone ? " done" : "");
+
+        const name = document.createElement("span");
+        name.className = "chapter-name";
+        name.textContent = task;
+
+        const label = document.createElement("label");
+        label.className = "switch";
+
+        const input = document.createElement("input");
+        input.type = "checkbox";
+        input.checked = isDone;
+
+        input.onchange = function() {
+            toggleChapter(key, this);
+        };
+
+        const slider = document.createElement("span");
+        slider.className = "slider";
+
+        label.appendChild(input);
+        label.appendChild(slider);
+
+        row.appendChild(name);
+        row.appendChild(label);
+
+        card.appendChild(row);
+
+    });
+
+    container.appendChild(card);
+    return;
+}
+        }
+
+
+        // SUBJECT HEADING
+
+        const header = document.createElement("div");
+
+        header.className = "subject-header";
+
+        header.innerHTML = `
+
+            <h2>${subject.icon} ${subject.name}</h2>
+
+            <span class="subject-count"
+            id="count-${index}">
+
+                0 / ${subject.chapters.length}
+
+            </span>
+
+        `;
+
+        card.appendChild(header);
+
+
+        // CREATE CHAPTERS
+
+        subject.chapters.forEach((chapter, chapterIndex) => {
+
+            const key =
+                subject.legacyIndex + "-" + chapterIndex;
+
+            const isDone = saved[key] === true;
+
+
+            const row = document.createElement("div");
+
+            row.className =
+                "chapter" + (isDone ? " done" : "");
+
+
+            const name = document.createElement("span");
+
+            name.className = "chapter-name";
+
+            name.textContent = chapter;
+
+
+            const label = document.createElement("label");
+
+            label.className = "switch";
+
+
+            const input = document.createElement("input");
+
+            input.type = "checkbox";
+
+            input.checked = isDone;
+
+            input.onchange = function() {
+
+                toggleChapter(key, this);
+
+            };
+
+
+            const slider = document.createElement("span");
+
+            slider.className = "slider";
+
+
+            label.appendChild(input);
+
+            label.appendChild(slider);
+
+            row.appendChild(name);
+
+            row.appendChild(label);
+
+            card.appendChild(row);
+
+        });
+
+
+        container.appendChild(card);
+
+    });
+
+
+    showSubject(0);
+
+    updateSubjectCounts();
+
+}
+
+
+// SWITCH SUBJECT PAGE
+
+function showSubject(index) {
+
+    document.querySelectorAll(".subject")
+    .forEach(card => {
+
+        card.classList.remove("active");
+
+    });
+
+
+    document.querySelectorAll(".tab-btn")
+    .forEach(btn => {
+
+        btn.classList.remove("active");
+
+    });
+
+
+    document.getElementById("subject-" + index)
+    .classList.add("active");
+
+
+    document.querySelectorAll(".tab-btn")[index]
+    .classList.add("active");
+
+}
+
+
+// CHAPTER TOGGLE
+
+function toggleChapter(key, input) {
+
+    saved[key] = input.checked;
+
+    localStorage.setItem(
+        "neetProgress",
+        JSON.stringify(saved)
+    );
+
+
+    input.closest(".chapter")
+    .classList.toggle("done", input.checked);
+
+
+    updateSubjectCounts();
+
+}
+
+
+// SUBJECT COUNTS
+
+function updateSubjectCounts() {
+
+    subjects.forEach((subject, index) => {
+
+        if(subject.other) return;
+
+
+        let completed = 0;
+
+        subject.chapters.forEach((chapter, chapterIndex) => {
+
+            const key =
+                subject.legacyIndex + "-" + chapterIndex;
+
+            if(saved[key] === true) {
+
+                completed++;
+
             }
+
         });
 
-        // 2. Telegram Link Click Handling
-        const connectBtn = document.getElementById('connect-btn');
 
-        connectBtn.addEventListener('click', function() {
-            // User click karke Telegram par jayega aur button badal jayega
-            connectBtn.innerText = "✅ Connected!";
-            connectBtn.style.backgroundColor = "#10b981";
-        });
-    </script>
+        document.getElementById("count-" + index)
+        .textContent =
+            completed + " / " + subject.chapters.length;
+
+    });
+
+}
+
+
+// DARK / LIGHT MODE
+
+function changeTheme() {
+
+    document.body.classList.toggle("light");
+
+    const isLight =
+        document.body.classList.contains("light");
+
+
+    document.getElementById("themeBtn").textContent =
+        isLight ? "☀️" : "🌙";
+
+
+    localStorage.setItem(
+        "neetTheme",
+        isLight ? "light" : "dark"
+    );
+
+}
+
+
+// RESTORE THEME
+
+if(localStorage.getItem("neetTheme") === "light") {
+
+    document.body.classList.add("light");
+
+    document.getElementById("themeBtn").textContent = "☀️";
+
+}
+
+
+// START APP
+
+createSubjects();
+
+</script>
 
 </body>
 </html>
